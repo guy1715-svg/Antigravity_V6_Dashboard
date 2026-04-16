@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V6.10 5AI 미니멀 전술 관제탑 (Ver 6.5)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Noto+Sans+KR:wght@700;900&display=swap');
+        
+        body { 
+            font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif; 
+            background-color: #000000; 
+            color: #FFFFFF; 
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6; /* 강제 여백 (Anti-Overlap) */
+        }
+        
+        .neon-green {
+            color: #39FF14;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.8), 0 0 20px rgba(57, 255, 20, 0.4);
+        }
+        
+        .neon-red {
+            color: #FF3131;
+            text-shadow: 0 0 10px rgba(255, 49, 49, 0.8), 0 0 20px rgba(255, 49, 49, 0.4);
+        }
+
+        .neon-cyan {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+
+        .neon-yellow {
+            color: #FFFF00;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8), 0 0 20px rgba(255, 255, 0, 0.4);
+        }
+        
+        .border-green {
+            border: 2px solid #39FF14;
+            box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.2), 0 0 10px rgba(57, 255, 20, 0.2);
+        }
+
+        .border-red {
+            border: 2px solid #FF3131;
+            box-shadow: inset 0 0 10px rgba(255, 49, 49, 0.2), 0 0 10px rgba(255, 49, 49, 0.2);
+        }
+
+        .border-yellow {
+            border: 2px solid #FFFF00;
+            box-shadow: inset 0 0 10px rgba(255, 255, 0, 0.2), 0 0 10px rgba(255, 255, 0, 0.2);
+        }
+
+        .psy-bar {
+            background: linear-gradient(90deg, #FF3131 0%, #39FF14 50%, #FF3131 100%);
+            position: relative;
+            height: 16px;
+            border-radius: 8px;
+        }
+        .psy-marker {
+            position: absolute;
+            top: -12px;
+            bottom: -12px;
+            width: 6px;
+            background-color: white;
+            box-shadow: 0 0 12px white;
+            left: 45%; /* 중립 부근 */
+            transition: left 0.5s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(57, 255, 20, 0.15);
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="max-w-7xl mx-auto w-full flex flex-col pt-8">
+        
+        <!-- [TOP] 시장 지수 & [TOP-RIGHT] 심리 온도계 -->
+        <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center border-b border-gray-800 pb-12 mb-12">
+            
+            <div class="flex flex-wrap gap-10 items-center xl:flex-1">
+                <div class="text-4xl lg:text-5xl font-bold tracking-wider">
+                    KOSPI <span class="neon-green">+0.48%</span>
+                </div>
+                <div class="text-4xl lg:text-5xl font-bold tracking-wider">
+                    NASDAQ <span class="neon-green">+1.12%</span>
+                </div>
+            </div>
+            
+            <!-- 상단 지수 영역과 심리 온도계 사이 40px 이상 여백 (xl:mt-0 xl:ml-[60px]) -->
+            <div class="flex flex-col w-full xl:w-5/12 mt-[40px] xl:mt-0 xl:ml-[60px] pl-0 border-t xl:border-t-0 border-gray-800 pt-8 xl:pt-0">
+                <div class="flex justify-between text-lg uppercase tracking-widest text-gray-400 mb-5 font-bold">
+                    <span>Extreme Fear</span>
+                    <span>Neutral</span>
+                    <span>Extreme Greed</span>
+                </div>
+                <div class="w-full psy-bar">
+                    <div class="psy-marker rounded"></div>
+                </div>
+                <div class="text-center mt-6 text-2xl font-bold neon-yellow tracking-widest uppercase">
+                    투심 인덱스: 45 (중립 안착 시도)
+                </div>
+            </div>
+        </div>
+
+        <!-- [CENTER] V6.1 최종 판정 -->
+        <div class="flex flex-col items-center justify-center relative mt-8">
+            <div class="text-2xl text-gray-400 mb-6 tracking-[0.4em] uppercase font-bold text-center">
+                V6.1 Final Action Directive
+            </div>
+            
+            <div class="text-[5rem] lg:text-[7rem] font-black neon-yellow tracking-tighter text-center leading-[1.2] mb-0">
+                추가매집 검토
+            </div>
+            
+            <!-- [CENTER-SUB] 통합 근거 - 60px 이상 여백 -->
+            <div class="mt-[60px] w-full max-w-5xl border-yellow bg-[#1a1a00] rounded-2xl px-12 py-10 text-2xl lg:text-3xl text-gray-200 tracking-wide flex items-start gap-8 shadow-2xl">
+                <span class="neon-yellow font-black text-5xl mt-2">📊</span>
+                <div class="leading-[1.8]">
+                    <strong class="neon-yellow tracking-wider">[5AI 다중 교차 검증 결과]</strong> <br/>
+                    외국인 선물 매도세 둔화 및 현물 저점 매수세 포착 완료. 코스피 주요 지지구간(공구리) 방어 확인. <br/>
+                    <strong>환율 부담(1400원선) 고려하여 비중 50% 내에서 낙폭과대주 선별적 분할 접근이 유효함.</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- [BOTTOM] 알고리즘 추천 3종 -->
+        <div class="mt-28 mb-16 w-full">
+            <h2 class="text-3xl font-bold text-gray-300 mb-10 border-b border-gray-800 pb-5 tracking-widest">
+                ▶ V6.1 알고리즘 타점 설계 (Top 3)
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                
+                <!-- 추천 1 -->
+                <div class="border-green rounded-2xl p-8 bg-gray-900/40 card-hover flex flex-col justify-between h-[280px]">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-4xl font-black text-white tracking-wide">SK하이닉스</h3>
+                            <span class="px-4 py-1 bg-[#39FF14]/20 text-[#39FF14] text-lg font-bold rounded-lg border border-[#39FF14]/50">하승훈 기법</span>
+                        </div>
+                        <p class="text-xl text-gray-400 leading-[1.7] mb-6">전일 저점 지지 확인 후, 거래량 실린 첫 눌림목 공략 (반도체 업황 바닥론).</p>
+                    </div>
+                    <div class="pt-5 border-t border-gray-700/50">
+                        <div class="flex justify-between items-center text-2xl">
+                            <span class="font-bold text-gray-300">매수타점</span>
+                            <span class="neon-green font-black">172,000원</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl mt-3">
+                            <span class="font-bold text-gray-500">본절 사수선</span>
+                            <span class="neon-red font-bold">168,000원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 추천 2 -->
+                <div class="border-green rounded-2xl p-8 bg-gray-900/40 card-hover flex flex-col justify-between h-[280px]">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-4xl font-black text-white tracking-wide">HD현대일렉트릭</h3>
+                            <span class="px-4 py-1 bg-[#39FF14]/20 text-[#39FF14] text-lg font-bold rounded-lg border border-[#39FF14]/50">단테 기법</span>
+                        </div>
+                        <p class="text-xl text-gray-400 leading-[1.7] mb-6">장기 박스권 상단 돌파 시도 및 안착 포착. 전력기기 순환매 수급 대기.</p>
+                    </div>
+                    <div class="pt-5 border-t border-gray-700/50">
+                        <div class="flex justify-between items-center text-2xl">
+                            <span class="font-bold text-gray-300">매수타점</span>
+                            <span class="neon-green font-black">245,000원</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl mt-3">
+                            <span class="font-bold text-gray-500">본절 사수선</span>
+                            <span class="neon-red font-bold">238,000원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 추천 3 -->
+                <div class="border-green rounded-2xl p-8 bg-gray-900/40 card-hover flex flex-col justify-between h-[280px]">
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-4xl font-black text-white tracking-wide">KB금융</h3>
+                            <span class="px-4 py-1 bg-[#39FF14]/20 text-[#39FF14] text-lg font-bold rounded-lg border border-[#39FF14]/50">수급/밸류업</span>
+                        </div>
+                        <p class="text-xl text-gray-400 leading-[1.7] mb-6">20일선 지지 및 밸류업 모멘텀 기관 수급 유입. 방어주 성격의 비중 확대.</p>
+                    </div>
+                    <div class="pt-5 border-t border-gray-700/50">
+                        <div class="flex justify-between items-center text-2xl">
+                            <span class="font-bold text-gray-300">매수타점</span>
+                            <span class="neon-green font-black">78,500원</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xl mt-3">
+                            <span class="font-bold text-gray-500">본절 사수선</span>
+                            <span class="neon-red font-bold">76,000원</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
